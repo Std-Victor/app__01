@@ -2,7 +2,8 @@
 
 # extra
 
-
+/README.md
+/.idea
 
 # dependencies
 /node_modules
