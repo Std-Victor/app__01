@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 function FComp() {
     const [notes, setNotes] = useState([{DataBase:19}, {ReactJs : 18}])

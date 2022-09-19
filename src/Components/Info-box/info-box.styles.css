@@ -1,0 +1,12 @@
+.box-field {
+  border-bottom: 1px solid #8b8b8b;
+  display: flex;
+  align-items: center;
+  padding: 0.3125rem;
+}
+
+.box-field > p {
+  font-weight: 700;
+  width: 100%;
+  max-width: 7em;
+}
