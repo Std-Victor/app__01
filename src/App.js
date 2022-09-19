@@ -1,27 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
-import FCom from './Components/F_comp.js';
+import React, {Component} from 'react';
+import "./App.css";
+import userData from './data/data.json';
+import { CardList } from './Components/Card-list/card-list.component';
+import {SearchBox} from './Components/Search-box/serach-box.component';
 
-function App() {
-  return (
-    <div className="App">
-      {/*<header className="App-header">*/}
-      {/*  <img src={logo} className="App-logo" alt="logo" />*/}
-      {/*  <p>*/}
-      {/*    Edit <code>src/App.js</code> and save to reload.*/}
-      {/*  </p>*/}
-      {/*  <a*/}
-      {/*    className="App-link"*/}
-      {/*    href="https://reactjs.org"*/}
-      {/*    target="_blank"*/}
-      {/*    rel="noopener noreferrer"*/}
-      {/*  >*/}
-      {/*    Learn React*/}
-      {/*  </a>*/}
-      {/*</header>*/}
-      <FCom />
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      students: [],
+      searchField: ''
+    };
+  }
+
+  componentDidMount() {
+    this.setState({students : userData})
+  }
+
+  handleChange = e => {
+    this.setState({searchField: e.target.value})
+  }
+
+  render() {
+    const {students, searchField} = this.state;
+    const filteredStd = students.filter(std => (
+      std.first_name.toLowerCase().includes(searchField.toLowerCase()) 
+      || std.last_name.toLowerCase().includes(searchField.toLowerCase())
+      ));
+    return (
+      <div className="App">
+        <h1>Students List</h1>
+        <SearchBox 
+          placeholder="search for Student" 
+          handleChange={this.handleChange} 
+        />
+        <CardList students={filteredStd} />
+      </div>
+    )
+  }
 }
 
 export default App;
